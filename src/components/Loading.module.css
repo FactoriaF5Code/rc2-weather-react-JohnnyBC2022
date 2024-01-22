@@ -1,0 +1,45 @@
+.loadingContainer {
+    width: 50rem;
+    height: 63.4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    border-radius: 0.5rem;
+}
+
+.loader{
+    width: 5rem;
+    height: 5rem;
+    padding: 1rem;
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+        43deg,
+        rgba(2,0,36,1) 0%,
+        rgba(9,9,121,1) 35%,
+        rgba(9,212,255,1) 100%,
+        );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+
+    animation: rotation .5s linear infinite;
+}
+
+.loader div {
+    background-color: var(--white);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}
+
+@keyframes rotation {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(358deg);
+    }
+}
