@@ -14,6 +14,8 @@ font-size: 62.5%;
 :root{
   --primary: lightseagreen;
   --white: #fff;
+  --grey: rgb(204, 204, 204);
+  --red: crimson;
   --myfont: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 

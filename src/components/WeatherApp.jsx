@@ -3,18 +3,18 @@ import { WeatherForm } from "./WeatherForm";
 import { WeatherMainInfo } from "./WeatherMainInfo";
 import { Loading } from "./Loading";
 
-import styles from './WeatherApp.module.css'
+import styles from "./WeatherApp.module.css";
 
 export const WeatherApp = () => {
   const [weather, setWeather] = useState(null);
 
-  useEffect(()=>{
+  useEffect(() => {
     loadInfo();
-  },[]);
+  }, []);
 
-  useEffect(()=>{
+  useEffect(() => {
     document.title = `Weather | ${weather?.location.name ?? ""}`;
-  }, [weather])
+  }, [weather]);
 
   async function loadInfo(city = "Langreo") {
     try {
@@ -29,7 +29,9 @@ export const WeatherApp = () => {
       setTimeout(() => {
         setWeather(json);
       }, 2000);
-    } catch (error) {}
+    } catch (error) {
+      console.error("Error al obtener los datos del clima", error);
+    }
   }
 
   function handleChangeCity(city) {
@@ -39,7 +41,7 @@ export const WeatherApp = () => {
   return (
     <div className={styles.weatherContainer}>
       <WeatherForm onChangeCity={handleChangeCity} />
-      {weather ? <WeatherMainInfo weather={weather} /> : <Loading/>}
+      {weather ? <WeatherMainInfo weather={weather} /> : <Loading />}
     </div>
   );
 };

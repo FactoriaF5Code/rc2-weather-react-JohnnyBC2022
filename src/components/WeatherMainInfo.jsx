@@ -1,4 +1,5 @@
-import styles from './WeatherMainInfo.module.css';
+import styles from "./WeatherMainInfo.module.css";
+import PropTypes from "prop-types";
 
 export const WeatherMainInfo = ({ weather }) => {
   return (
@@ -13,7 +14,9 @@ export const WeatherMainInfo = ({ weather }) => {
           />
         </div>
         <div className={styles.weatherConditions}>
-          <div className={styles.condition}>{weather?.current.condition.text}</div>
+          <div className={styles.condition}>
+            {weather?.current.condition.text}
+          </div>
           <div className={styles.current}>{weather?.current.temp_c}º C</div>
         </div>
       </div>
@@ -29,6 +32,36 @@ export const WeatherMainInfo = ({ weather }) => {
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
       </div>
+      <div className={styles.weatherAditional}>
+        <h2>Información Adicional: </h2>
+        <div className={styles.condition}>Sensación térmica:</div>
+        <div className={styles.current}>{weather?.current.feelslike_c}º C</div>
+        <div className={styles.condition}>Humedad relativa:</div>
+        <div className={styles.current}>{weather?.current.humidity}%</div>
+        <div className={styles.condition}>Velocidad del viento:</div>
+        <div className={styles.current}>{weather?.current.wind_kph} km/h</div>
+      </div>
     </div>
   );
+};
+
+WeatherMainInfo.propTypes = {
+  weather: PropTypes.shape({
+    location: PropTypes.shape({
+      name: PropTypes.string,
+      country: PropTypes.string,
+      lon: PropTypes.number,
+      lat: PropTypes.number,
+    }),
+    current: PropTypes.shape({
+      condition: PropTypes.shape({
+        icon: PropTypes.string,
+        text: PropTypes.string,
+      }),
+      temp_c: PropTypes.number,
+      feelslike_c: PropTypes.number,
+      humidity: PropTypes.number,
+      wind_kph: PropTypes.number,
+    }),
+  }),
 };
